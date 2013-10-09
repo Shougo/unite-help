@@ -39,7 +39,7 @@ function! unite#sources#help#refresh()
     let cache_dir = g:unite_data_directory . '/help'
     if s:Cache.filereadable(cache_dir, 'help-cache')
         " Delete cache file.
-        call s:Cache.delete(cache_dir, 'help-cache')
+        call s:Cache.deletefile(cache_dir, 'help-cache')
     endif
 endfunction
 let s:vimproc_files = {}
