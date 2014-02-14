@@ -1,6 +1,6 @@
 " help source for unite.vim
 " Version:     0.0.3
-" Last Change: 13 Dec 2012.
+" Last Change: 14 Feb 2014.
 " Author:      tsukkee <takayuki0510 at gmail.com>
 " Licence:     The MIT License {{{
 "     Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,7 +27,7 @@ function! unite#sources#help#define()
     return unite#util#has_vimproc() ? s:source : {}
 endfunction
 
-let s:Cache = vital#of('unite.vim').import('System.Cache')
+let s:Cache = vital#of('unite').import('System.Cache')
 
 " cache
 let s:cache = []
