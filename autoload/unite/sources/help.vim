@@ -36,7 +36,7 @@ let s:cont_max = 0
 function! unite#sources#help#refresh()
     let s:cache = []
 
-    let cache_dir = g:unite_data_directory . '/help'
+    let cache_dir = unite#get_data_directory() . '/help'
     if s:Cache.filereadable(cache_dir, 'help-cache')
         " Delete cache file.
         call s:Cache.deletefile(cache_dir, 'help-cache')
@@ -84,7 +84,7 @@ function! s:source.gather_candidates(args, context)
         let a:context.is_async = 1
     endif
 
-    let cache_dir = g:unite_data_directory . '/help'
+    let cache_dir = unite#get_data_directory() . '/help'
     if s:Cache.filereadable(cache_dir, 'help-cache')
         " Use cache file.
         let s:cache = eval(get(s:Cache.readfile(
@@ -170,7 +170,7 @@ function! s:source.async_gather_candidates(args, context)
         call unite#print_source_message('Completed.', s:source.name)
 
         " Save cache file.
-        let cache_dir = g:unite_data_directory . '/help'
+        let cache_dir = unite#get_data_directory() . '/help'
         call s:Cache.writefile(cache_dir, 'help-cache',
                     \ [string(s:cache)])
     endif
