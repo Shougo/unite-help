@@ -27,7 +27,7 @@ function! unite#sources#help#define()
     return unite#util#has_vimproc() ? s:source : {}
 endfunction
 
-let s:Cache = vital#of('unite').import('System.Cache')
+let s:Cache = unite#util#get_vital_cache()
 
 " cache
 let s:cache = []
