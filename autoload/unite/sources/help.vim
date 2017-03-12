@@ -102,7 +102,7 @@ function! s:source.gather_candidates(args, context)
 
     " load files.
     let s:vimproc_files = {}
-    for tagfile in split(globpath(&runtimepath, 'doc/{tags,tags-*}'), "\n")
+    for tagfile in s:globpath(&runtimepath, 'doc/{tags,tags-*}', 1, 1)
         if !filereadable(tagfile) | continue | endif
 
         let file = {
@@ -211,6 +211,19 @@ function! s:action_table.tabopen.func(candidate)
     set noignorecase
     execute 'tab' a:candidate.action__command
     let &ignorecase = save_ignorecase
+endfunction
+
+function! s:globpath(path, expr, suf, list) abort
+    if has('patch-7.4.279')
+        return globpath(a:path, a:expr, a:suf, a:list)
+    else
+        let rst = globpath(a:path, a:expr, a:suf)
+        if a:list
+            return split(rst, "\n")
+        else
+            return rst
+        endif
+    endif
 endfunction
 
 let s:source.action_table.common = s:action_table
